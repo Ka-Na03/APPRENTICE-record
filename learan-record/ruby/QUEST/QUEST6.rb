@@ -62,3 +62,29 @@ end
 puts sum_1_100
 
 #ChatGPTで範囲オブジェクトやハッシュオブジェクトを配列に変換する".to_a"メソッドを発見
+
+#総和 2
+
+def sum(x,y)
+    total = (x..y).to_a
+    sum = 0
+    total.each do |num|
+        sum += num
+    end
+    sum
+end
+
+puts sum(10,80)
+
+# フィボナッチ数列
+
+def fibonacci(n)
+    maid = [0, 1]
+    (2..n).each do |days|
+        maid[days] = maid[days - 1] + maid[days - 2]
+    end
+    maid.each do |salary|
+    end
+end
+
+puts fibonacci(5)
