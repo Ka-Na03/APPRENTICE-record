@@ -13,5 +13,8 @@ class Drink < VendingMachine
     end
     private :press_manufacturer_name
 
+    def need_cup?
+        false
+    end
 
 end
