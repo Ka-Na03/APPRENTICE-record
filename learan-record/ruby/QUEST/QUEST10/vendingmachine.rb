@@ -7,7 +7,6 @@ class VendingMachine
     end
 
     def deposit_coin(coin)
-        
         if coin == 100
             @total_coins ||= 0
             @total_coins += coin
