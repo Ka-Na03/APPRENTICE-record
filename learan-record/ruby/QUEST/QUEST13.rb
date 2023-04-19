@@ -2,41 +2,57 @@
 
 def calculate(num1, num2, operator)
     case operator
-    when '+' 
-        num1 + num2
-    when '-' 
-        num1 - num2
-    when '*' 
-        num1 * num2
-    when '/' 
-        num1 / num2
+        when '+'
+            num1.to_i + num2.to_i
+        when '-' 
+            num1.to_i - num2.to_i
+        when '*' 
+            num1.to_i * num2.to_i
+        when '/' 
+            num1.to_i / num2.to_i
     else
-        raise "演算子には +、-、、/ のいずれかを使用してください"
-    end
+        raise RuntimeError
+    end        
 end
 
 begin
 print "一番目の整数を入力してください:"
 num1 = gets.chomp.to_f
+    if num1.to_i != num1
+        raise ArgumentError
+    end
+#     if num1.is_a?(String) == num1
+#         raise ArgumentError
+#     end
+# != は等しくないよっていうやつ
+# num1で入力した数字が5.0の場合Integerで小数点以下を切り捨てられた5(.0)と等しい
+# num1で5.2の場合
+# != が等しくないってことはif が真になるので、raiseに渡る
 
+#   if num1 % 1 != 0
+#        raise ArgumentError    
+#    end
 print "二番目の整数を入力してください:"
 num2 = gets.chomp.to_f
+    if num2.to_i != num2
+        raise ArgumentError
+    end
+    # if num2.is_a?(String) == num2
+    #     raise ArgumentError
+    # end
+#   if num2 % 1 != 0
+#        raise ArgumentError
+#   end
 
 print "演算子(+, -, *, /)を入力してください:"
 operator = gets.chomp
 
 result = calculate(num1, num2, operator)
-    puts result
+puts result
 rescue ZeroDivisionError
-   puts "ゼロによる割り算は許可されていません。"   
-# rescue 
-#   puts "num1、 num2 には整数を入力してください"   
-
-  #  puts "演算子には +、-、、/ のいずれかを使用してください"
-
+    puts "ゼロによる割り算は許可されていません。"
+rescue RuntimeError
+    puts "演算子には +, -, *, / のいずれかを使用してください"
+ rescue ArgumentError 
+     puts "num1、num2には整数を入力してください"
 end 
-
-# 割り算の例外が通らず'0/1'をすると'Infinity'になる
-# 'to_f'を'to_i'にすると上記の問題は解決するが小数点を入力して足すと整数部分のみ足される?
-# 'to_f'のまま割り算の例外が通るようにしたい
-# 最初の'def calculate(num1, num2, operator)'の書き方から考えなおす。
