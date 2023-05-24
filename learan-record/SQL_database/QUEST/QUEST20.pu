@@ -1,0 +1,58 @@
+@startuml quest
+
+entity users as "users\nユーザー" {
+  *<PK> ユーザーID
+  --
+  ユーザー名
+  ユーザーパスワード(暗号化)
+  性別
+  年齢
+  生年月日
+  登録日時
+}
+
+entity products as "Products\n商品" {
+  *<PK> 商品ID
+  --
+  商品名
+  商品価格
+  *<FK> メーカーID
+  *<FK> カテゴリーID
+}
+
+entity category as "Category\nカテゴリー" {
+  *<PK> カテゴリーID
+  --
+  *<FK> 商品ID
+}
+
+entity inventory as "Inventory\n在庫"{
+  *<PK> 在庫ID
+  --
+  *<FK> 商品ID
+}
+
+entity manufacturers as "Manufacturer\nメーカー" {
+  *<PK> メーカーID
+  --
+  メーカー名
+  メーカーの連絡先
+  メーカーの所在地
+}
+
+entity purchase_history as "PurchaseHistory\n購入履歴" {
+  *<PK> 購入ID
+  --
+  *<FK>ユーザーID
+  *<FK>商品ID
+  商品価格
+  購入日時
+}
+
+users ||--o{ purchase_history
+products ||--o{ purchase_history
+products }o--|| manufacturers
+products }o--|| category
+products }o--|{ inventory
+
+@enduml
