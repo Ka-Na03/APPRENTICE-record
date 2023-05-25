@@ -109,3 +109,14 @@ EXPLAIN ANALYZE
 SELECT *
   FROM employees
  WHERE birth_date = '1961-08-03';
+
+SHOW TABLES FROM internet_tv;
+
+ALTER TABLE episodes add series_id INT NOT NULL,
+ADD FOREIGN KEY (series_id) REFERENCES series(id);
+
+ALTER TABLE time_slots MODIFY channel_id INT NOT NULL,
+ADD FOREIGN KEY (channel_id) REFERENCES channels(id);
+
+ALTER TABLE programs
+DROP genre_id;

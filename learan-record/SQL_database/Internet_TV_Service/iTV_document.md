@@ -1,6 +1,8 @@
 
+# インターネットTVサービス
 
-<details><summary><h2>STEP1. テーブル設計</h2></summary>
+<details>
+<summary><h2>STEP1. テーブル設計</h2></summary>
 
 ## CHANNELS
 
@@ -92,3 +94,47 @@
 - **channel_idカラムは`CHANNELSテーブルのid`カラムを参照**
 
 </details>
+
+---
+
+<details><summary><h2>STEP2. データベースの構築からサンプルデータの挿入</h2></summary>
+
+### データベースの構築
+
+1\. `MySQLを起動し接続する`  
+
+<dl>
+  <dt>MySQLを起動する</dt>
+  <dd> net start mysql80 </dd>
+  <br>
+  <dt>MySQLに接続する</dt>
+  <dd> mysql -u [username] -p </dd>
+</dl>
+
+2\. `データベースを作成し使用するデータベースを宣言する`
+
+MySQLに接続した状態で以下のクエリを順に実行してください。
+<dl>
+  <dt>データベースを作成する</dt>
+  <dd> <strong>CREATE DATABASE internet_tv;</strong> </dd>
+  <br>
+  <dt>使用するデータベースを宣言する</dt>
+  <dd> <strong>USE internet_tv</strong> </dd>
+</dl>
+
+### テーブルの作成
+
+1\. MySQLに接続した状態で`Internet_TV_Service\setup-sql`内にある<strong>`create_table.sql`</strong>ファイルを実行する。
+
+### サンプルデータの挿入
+
+1\. MySQLに接続した状態で`Internet_TV_Service\setup-sql`内にある<strong>`sampledata.sql`</strong>ファイルを実行する。
+
+</details>
+
+---
+
+<details>
+<summary><h2>STEP3. データを抽出するクエリ</h2></summary>
+
+### エピソード視聴数トップ３のエピソードタイトルと視聴数を取得する。
