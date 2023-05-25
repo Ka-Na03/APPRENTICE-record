@@ -15,9 +15,18 @@
 | カラム名 | データ型 | Null | Key | 初期値 | AUTOINCREMENT |
 |------------|-------------|------|-----|---------|----------------|
 | id         | INT | - | PRI | - | YES |
+| channel_id | INT | - | INDEX | - | - |
 | start_time | DATETIME | - | - | - | - |
 | end_time   | DATETIME | - | - | - | - |
+- **channel_idカラムは`CHANNELSテーブルのidカラム`を参照**
  
+## GENRES
+ 
+| カラム名 | データ型 | Null | Key | 初期値 | AUTOINCREMENT |
+|-----|-------------|------|-----|---------|----------------|
+| id  | INT | - | PRI | - | YES |
+| name| VARCHAR(50) | - | INDEX | - | - |
+- **nameカラムにユニークキー制約を設定**
 
 ## PROGRAMS
    
@@ -29,13 +38,15 @@
 | genre_id | INT | - | INDEX | - | - |
 - **genre_idカラムは`GENRESテーブルのidカラム`を参照** 
 
-## GENRES
- 
+## program_genres
+
 | カラム名 | データ型 | Null | Key | 初期値 | AUTOINCREMENT |
-|-----|-------------|------|-----|---------|----------------|
-| id  | INT | - | PRI | - | YES |
-| name| VARCHAR(50) | - | INDEX | - | - |
-- **nameカラムにユニークキー制約を設定**
+|------------|-------------|------|-----|---------|----------------|
+| program_id | INT | - | INDEX | - | - |
+| genre_id   | INT | - | INDEX | - | - |
+- **program_idとgenre_idの複合ユニークキーを設定**
+- **program_idカラムは`PROGRAMSテーブルのidカラム`を参照**
+- **genre_idカラムは`GENRESテーブルのidカラム`を参照**
 
 ## SERIES
  
@@ -44,14 +55,13 @@
 | id    | INT | - | PRI | - | YES |
 | title | VARCHAR(100) | - | - | - | - |
  
-
 ## SEASONS
 
 | カラム名 | データ型 | Null | Key | 初期値 | AUTOINCREMENT |
 |---------------|-------------|------|-----|---------|----------------|
 | id            | INT | - | PRI | - | YES |
 | program_id    | INT | - | INDEX | - | - |
-| number | INT | YES | - | - | - |
+| number        | INT | YES | - | - | - |
 - **program_idカラムは`PROGRAMSテーブルのidカラム`を参照**
 
 ## EPISODES
@@ -59,12 +69,13 @@
 | カラム名 | データ型 | Null | Key | 初期値 | AUTOINCREMENT |
 |--------------|-------------|------|-----|---------|----------------|
 | id           | INT | - | PRI | - | YES |
+| series_id    | INT | - | INDEX | - | - |
 | season_id    | INT | - | INDEX | - | - |
 | number       | INT | YES | - | - | - |
 | title        | VARCHAR(100) | - | - | - | - |
 | details      | TEXT | - | - | - | - |
 | duration     | INT  | YES | - | - | - |
-| release_date | DATE | YES | - | - | - |
+| release_date | DATE | - | - | - | - |
 - **season_idカラムは`SEASONSテーブルのidカラム`を参照** 
 
 ## VIEWERSHIP
