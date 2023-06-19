@@ -10,7 +10,7 @@ def print_names(names)
     end
 end
 
-print_names(["かいと","まいちゃん"])
+print_names(["かいと","ちゃん"])
 
 # map
 # .mapメソッド構文　配列またはハッシュ.map { |要素| 変換処理 }
