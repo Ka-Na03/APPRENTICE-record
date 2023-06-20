@@ -1,0 +1,3 @@
+[submodule "rails_api"]
+	path = rails_api
+	url = https://github.com/Ka-Na03/rails_api.git
